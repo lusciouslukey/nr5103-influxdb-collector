@@ -1,7 +1,7 @@
 apiVersion: 1
 
 providers:
-  - name: NR7101
+  - name: NR5103
     type: file
     disableDeletion: false
     updateIntervalSeconds: 10

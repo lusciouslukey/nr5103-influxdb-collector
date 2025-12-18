@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   influxdb:
-    container_name: nr7101-collector-influxdb
+    container_name: nr5103-collector-influxdb
     image: influxdb:2.0.7-alpine
     ports:
       - 8086:8086
@@ -10,18 +10,18 @@ services:
       - ./setup-v1.sh:/docker-entrypoint-initdb.d/setup-v1.sh
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=nr7101
-      - DOCKER_INFLUXDB_INIT_PASSWORD=nr7101password
-      - DOCKER_INFLUXDB_INIT_ORG=nr7101
-      - DOCKER_INFLUXDB_INIT_BUCKET=nr7101
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=nr7101token
-      - V1_DB_NAME=nr7101
+      - DOCKER_INFLUXDB_INIT_USERNAME=nr5103
+      - DOCKER_INFLUXDB_INIT_PASSWORD=nr5103password
+      - DOCKER_INFLUXDB_INIT_ORG=nr5103
+      - DOCKER_INFLUXDB_INIT_BUCKET=nr5103
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=nr5103token
+      - V1_DB_NAME=nr5103
       - V1_RP_NAME=autogen
-      - V1_AUTH_USERNAME=nr7101
-      - V1_AUTH_PASSWORD=nr7101password
+      - V1_AUTH_USERNAME=nr5103
+      - V1_AUTH_PASSWORD=nr5103password
 
   grafana:
-    container_name: nr7101-collector-grafana
+    container_name: nr5103-collector-grafana
     build: ./grafana
     ports:
       - 3000:3000
@@ -30,6 +30,6 @@ services:
 
 volumes:
   influxdb:
-    name: nr7101-collector-influxdb
+    name: nr5103-collector-influxdb
   grafana:
-    name: nr7101-collector-grafana
+    name: nr5103-collector-grafana

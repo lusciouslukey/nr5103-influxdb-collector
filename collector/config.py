@@ -4,7 +4,7 @@ import math
 from configparser import ConfigParser
 
 
-class NR7101Config(typing.TypedDict):
+class NR5103Config(typing.TypedDict):
     url: str
     username: str
     password: str
@@ -38,7 +38,7 @@ class Config:
     def __init__(self, config_file_path: typing.Optional[str] = None):
         config = ConfigParser()
         config.read_dict({
-            'nr7101': {},
+            'nr5103': {},
             'influx2': {},
             'collector': {}
         })
@@ -49,10 +49,10 @@ class Config:
         def option(env_var: str, **kwargs):
             return parse_option_value(config, env_var, **kwargs)
 
-        self.nr7101: NR7101Config = {
-            'url': option('NR7101_URL', required=True),
-            'username': option('NR7101_USERNAME', required=True),
-            'password': option('NR7101_PASSWORD', required=True),
+        self.nr5103: NR5103Config = {
+            'url': option('NR5103_URL', required=True),
+            'username': option('NR5103_USERNAME', required=True),
+            'password': option('NR5103_PASSWORD', required=True),
         }
 
         self.collector: CollectorConfig = {
@@ -84,9 +84,9 @@ def parse_option_value(config: ConfigParser, env_var: str, **kwargs) -> typing.A
     if env_var.startswith('INFLUXDB_V2_'):
         prefix = 'INFLUXDB_V2_'
         section = 'influx2'
-    elif env_var.startswith('NR7101_'):
-        prefix = 'NR7101_'
-        section = 'nr7101'
+    elif env_var.startswith('NR5103_'):
+        prefix = 'NR5103_'
+        section = 'nr5103'
     elif env_var.startswith('COLLECTOR_'):
         prefix = 'COLLECTOR_'
         section = 'collector'

@@ -2,7 +2,7 @@ import argparse
 import logging
 import atexit
 from .config import Config
-from nr7101.nr7101 import NR7101
+from nr5103.nr5103 import NR5103
 from influxdb_client import InfluxDBClient
 from .collector import Collector
 from .version import __version__
@@ -13,14 +13,14 @@ def cli():
 
     logger = logging.getLogger(__name__)
 
-    parser = argparse.ArgumentParser(description=f'NR7101 InfluxDB collector v{__version__}')
+    parser = argparse.ArgumentParser(description=f'NR5103 InfluxDB collector v{__version__}')
     parser.add_argument('--config-file', default=None)
     args = parser.parse_args()
 
     config = Config(args.config_file)
-    nr7101_client = NR7101(**config.nr7101)
+    nr5103_client = NR5103(**config.nr5103)
     influxdb_client = InfluxDBClient(**config.influxdb)
-    collector = Collector(nr7101_client, influxdb_client, config.collector)
+    collector = Collector(nr5103_client, influxdb_client, config.collector)
 
     atexit.register(on_exit, collector, influxdb_client, logger)
 

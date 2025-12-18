@@ -5,3 +5,5 @@ venv
 *.egg-info/
 .idea
 config.ini
+.env
+.nr5101.cookie

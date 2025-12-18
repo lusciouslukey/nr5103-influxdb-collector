@@ -1,7 +1,7 @@
-# Zyxel NR7101 InfluxDB collector
+# Zyxel NR5103 InfluxDB collector
 
-Periodically gets the status of your NR7101 modem, pings a host of your choosing, 
-and stores the results in InfluxDB. Includes sample Grafana dashboards. 
+Periodically gets the status of your NR5103 modem, pings a host of your choosing,
+and stores the results in InfluxDB. Includes sample Grafana dashboards.
 
 ## Requirements
 
@@ -13,26 +13,27 @@ and stores the results in InfluxDB. Includes sample Grafana dashboards.
 Specific tag, e.g. v2.2.3:
 
 ```sh
-pip install git+https://github.com/atorma/nr7101-influxdb-collector.git@v2.2.3
+pip install git+https://github.com/lusciouslukey/nr5103-influxdb-collector.git@v2.2.3
 ```
 
 Master version:
 
 ```sh
-pip install git+https://github.com/atorma/nr7101-influxdb-collector.git
+pip install git+https://github.com/lusciouslukey/nr5103-influxdb-collector.git
 ```
 
 ## Usage
 
-**Note!** Use the https protocol in NR7101 URL. Authentication does not work when using http.
+**Note!** Use the https protocol in NR5103 URL. Authentication does not work when using http.
 
 Using configuration file:
 
 ```sh
-nr7101-collector --config-file=/path/to/config.ini
+nr5103-collector --config-file=/path/to/config.ini
 ```
 
 config.ini
+
 ```
 [influx2]
 url=http://localhost:8086
@@ -43,13 +44,13 @@ token=my-token
 my_tag=my_default_value
 other_tag=other_tag_default_value
 
-[nr7101]
+[nr5103]
 url=https://192.168.1.1
 username=admin
 password=my-password
 
 [collector]
-bucket=nr7101
+bucket=nr5103
 measurement=status
 interval=5000
 influxdb_max_retries=5
@@ -60,38 +61,38 @@ ping_host=google.com
 ping_timeout=1
 ```
 
-Using environment properties (see [https://pypi.org/project/influxdb-client](https://pypi.org/project/influxdb-client) 
+Using environment properties (see [https://pypi.org/project/influxdb-client](https://pypi.org/project/influxdb-client)
 for InfluxDB client environment properties):
 
 ```sh
 INFLUXDB_V2_URL=http://localhost:8086 \
  INFLUXDB_V2_ORG=my-org \
  INFLUXDB_V2_TOKEN=my-token \
- NR7101_URL=https://192.168.1.1 \
- NR7101_USERNAME=admin \
- NR7101_PASSWORD=my-password \
- COLLECTOR_BUCKET=nr7101 \
+ NR5103_URL=https://192.168.1.1 \
+ NR5103_USERNAME=admin \
+ NR5103_PASSWORD=my-password \
+ COLLECTOR_BUCKET=nr5103 \
  COLLECTOR_MEASUREMENT=status \
  COLLECTOR_PING_HOST=google.com \
- nr7101-collector
+ nr5103-collector
 ```
 
 Using both environment properties and config file (the former take precedence):
 
 ```sh
-INFLUXDB_V2_TOKEN=my-token NR7101_PASSWORD=my-password nr7101-collector --config-file=/path/to/config.ini
+INFLUXDB_V2_TOKEN=my-token NR5103_PASSWORD=my-password nr5103-collector --config-file=/path/to/config.ini
 ```
 
 ## Using Docker
 
 ```sh
-docker build -t nr7101-collector .
-docker run -v /path/to/config.ini:/config.ini:ro nr7101-collector --config-file=/config.ini
+docker build -t nr5103-collector .
+docker run -v /path/to/config.ini:/config.ini:ro nr5103-collector --config-file=/config.ini
 ```
 
 With the `ping_host` option you may have to use the `--network host` Docker run option.
 
-## Configuration 
+## Configuration
 
 ### [influx2]
 
@@ -102,11 +103,11 @@ For InfluxDB 1.8+ see [API compatibility](https://github.com/influxdata/influxdb
 
 Optional [default tags](https://github.com/influxdata/influxdb-client-python#default-tags) to add to all data points. Can also be given as environment properties.
 
-### [nr7101]
+### [nr5103]
 
-* `url` / `NR7101_URL` - The https URL of the NR7101 web interface. Required.
-* `username` / `NR7101_USERNAME`: The username of the NR7101 user. Required.
-* `password` / `NR7101_PASSWORD`: The password of the NR7101 user. Required.
+* `url` / `NR5103_URL` - The https URL of the NR5103 web interface. Required.
+* `username` / `NR5103_USERNAME`: The username of the NR5103 user. Required.
+* `password` / `NR5103_PASSWORD`: The password of the NR5103 user. Required.
 
 ### [collector]
 
@@ -119,4 +120,4 @@ Optional [default tags](https://github.com/influxdata/influxdb-client-python#def
 * `influxdb_max_retry_delay` / `COLLECTOR_INFLUXDB_MAX_RETRY_DELAY`: See [https://github.com/influxdata/influxdb-client-python#batching](https://github.com/influxdata/influxdb-client-python#batching)
 * `influxdb_exponential_base` / `COLLECTOR_INFLUXDB_EXPONENTIAL_BASE`: See [https://github.com/influxdata/influxdb-client-python#batching](https://github.com/influxdata/influxdb-client-python#batching)
 * `ping_host` / `COLLECTOR_PING_HOST`: Optional hostname for ping measurements. Default is `None` meaning ping is not measured.
-* `ping_timeout` / `COLLECTOR_PING_TIMEOUT`: Ping timeout in seconds. Default is `1`. 
+* `ping_timeout` / `COLLECTOR_PING_TIMEOUT`: Ping timeout in seconds. Default is `1`.
