@@ -12,7 +12,8 @@ setup(
     install_requires=[
         'ping3==2.9.1',
         'influxdb-client==1.19.0',
-        'rx==3.2.0'
+        'rx==3.2.0',
+        'urllib3<2'
     ],
     entry_points={
         'console_scripts': ['nr5103-collector=collector.cli:cli'],
