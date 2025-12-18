@@ -6,4 +6,6 @@ venv
 .idea
 config.ini
 .env
-.nr5101.cookie
+.nr5103.cookie
+docker-compose.yaml
+/services/config.ini
