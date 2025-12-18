@@ -1,3 +1,7 @@
+# Refined to better fit the NR5103 model and updated dependencies
+
+Credit to atorma and pkorpinen for the original work:
+
 # Zyxel NR5103 InfluxDB collector
 
 Periodically gets the status of your NR5103 modem, pings a host of your choosing,
