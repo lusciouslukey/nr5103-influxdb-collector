@@ -5,7 +5,7 @@ setup(
     name='nr5103-influxdb-collector',
     version=__version__,
     description='Zyxel NR5103 InfluxDB Collector',
-    author='Anssi Törmä',
+    author='Luke Bennett',
     license='MIT',
     url='https://github.com/lusciouslukey/nr5103-influxdb-collector',
     packages=find_packages(),
@@ -13,7 +13,8 @@ setup(
         'ping3==2.9.1',
         'influxdb-client==1.19.0',
         'rx==3.2.0',
-        'urllib3<2'
+        'urllib3<2',
+        'requests==2.32.5'
     ],
     entry_points={
         'console_scripts': ['nr5103-collector=collector.cli:cli'],
