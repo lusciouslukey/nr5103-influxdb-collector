@@ -10,7 +10,7 @@ setup(
     url='https://github.com/lusciouslukey/nr5103-influxdb-collector',
     packages=find_packages(),
     install_requires=[
-        'ping3==2.9.1',
+        'ping3==5.1.5',
         'influxdb-client==1.19.0',
         'rx==3.2.0',
         'urllib3<2', # installing a later version causes an issue with influxdb with methods_allowed/whitelist_method
