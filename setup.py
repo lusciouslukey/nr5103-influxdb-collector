@@ -11,7 +11,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'ping3==2.9.1',
-        'influxdb-client==1.19.0',
+        'influxdb-client==1.49.0',
         'rx==3.2.0',
         'urllib3<2', # installing a later version causes an issue with influxdb with methods_allowed/whitelist_method
         'requests==2.32.5'
