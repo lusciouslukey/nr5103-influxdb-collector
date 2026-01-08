@@ -13,7 +13,7 @@ setup(
         'ping3==5.1.5',
         'influxdb-client==1.49.0',
         'rx==3.2.0',
-        'urllib3==2.6.2',
+        'urllib3==2.6.3',
         'requests==2.32.5'
     ],
     entry_points={
