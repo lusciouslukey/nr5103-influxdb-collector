@@ -11,7 +11,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'ping3==5.1.5',
-        'influxdb-client==1.49.0',
+        'influxdb-client==1.50.0',
         'rx==3.2.0',
         'urllib3==2.6.3',
         'requests==2.32.5'
