@@ -14,7 +14,7 @@ setup(
         'influxdb-client==1.50.0',
         'rx==3.2.0',
         'urllib3==2.6.3',
-        'requests==2.33.0'
+        'requests==2.33.1'
     ],
     entry_points={
         'console_scripts': ['nr5103-collector=collector.cli:cli'],
